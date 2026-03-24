@@ -678,9 +678,6 @@ def _has_complete_diagnosis(dx: Optional[Dict[str, str]]) -> bool:
     return not _is_missing(dx.get("code")) or not _is_missing(dx.get("name"))
 
 
-def _has_usable_symptoms(symptoms: List[str]) -> bool:
-    return any(not _is_missing(s) for s in symptoms)
-
 
 def _is_complete_record(record: Dict) -> bool:
     if not _has_complete_diagnosis(record.get("main_diagnosis")):
@@ -690,11 +687,17 @@ def _is_complete_record(record: Dict) -> bool:
     return True
 
 
-_STRICT_DEMOGRAPHICS_FIELDS   = ("age", "sex", "ethnicity")
-_STRICT_DIAGNOSIS_FIELDS       = ("code", "name", "onset")
-_STRICT_PRESCRIPTION_FIELDS    = ("drug_name", "dosage", "route", "frequency", "duration")
-_STRICT_PRESCRIPTION_REASON_FIELDS = ("reason_code", "reason_description")
+# _STRICT_DEMOGRAPHICS_FIELDS   = ("sex", "ethnicity")
+# _STRICT_DIAGNOSIS_FIELDS       = ("code", "name", "onset")
+# _STRICT_PRESCRIPTION_FIELDS    = ("drug_name", "dosage", "route", "frequency", "duration")
+# _STRICT_PRESCRIPTION_REASON_FIELDS = ("reason_code", "reason_description")
 
+_STRICT_DEMOGRAPHICS_FIELDS = ("age", "sex")
+_STRICT_DIAGNOSIS_FIELDS = ("code", "name", "onset")
+_STRICT_PRESCRIPTION_FIELDS = ("drug_name",)
+
+# Make reason fields optional
+_STRICT_PRESCRIPTION_REASON_FIELDS = ()
 
 def _is_strictly_complete(record: Dict) -> bool:
     if _is_missing(record.get("patient_id")):
