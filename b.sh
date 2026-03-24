@@ -1,4 +1,21 @@
 set -euo pipefail
+
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk install java 17.0.8-tem
+sdk use java 17.0.8-tem
+java -version
+./gradlew --version
+./gradlew build check test
+
+git clone https://github.com/synthetichealth/synthea.git
+cd synthea
+./gradlew build check test
+
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install pandas pyarrow google-genai    
+
 mkdir -p runs logs
 
 states=(
