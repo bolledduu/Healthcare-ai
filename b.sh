@@ -35,7 +35,7 @@ for i in "${!states[@]}"; do
 
   ./run_synthea \
     -s "${seed}" \
-    -p 5000 \
+    -p 10000 \
     "${state}" \
     --exporter.baseDirectory="${out_dir}" \
     --exporter.csv.export=true \

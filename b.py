@@ -965,8 +965,8 @@ def main() -> None:
         ),
     )
     ap.add_argument("--runs_dir", dest="root_dir", help=argparse.SUPPRESS)
-    ap.add_argument("--target_patients",  type=int, default=5)
-    ap.add_argument("--batch_size",       type=int, default=5)
+    ap.add_argument("--target_patients",  type=int, default=15000)
+    ap.add_argument("--batch_size",       type=int, default=10)
     ap.add_argument("--seed",             type=int, default=42)
     ap.add_argument("--model",            default=os.getenv("GEMINI_MODEL", "gemini-2.5-pro"))
     ap.add_argument("--out_csv",          default="synthea_video_prompts.csv")
